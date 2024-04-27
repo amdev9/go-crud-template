@@ -1,7 +1,8 @@
 package main
 
 import (
-	"net/http"
+	"go-crud-template/models"
+	"go-crud-template/routes"
 	"os"
 
 	"github.com/labstack/echo/v4"
@@ -15,13 +16,11 @@ func main() {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-	e.GET("/", func(c echo.Context) error {
-		return c.HTML(http.StatusOK, "Hello, Docker!")
-	})
+	db := models.InitDB("books.db")
+	models.Migrate(db)
 
-	e.GET("/health", func(c echo.Context) error {
-		return c.JSON(http.StatusOK, struct{ Status string }{Status: "OK"})
-	})
+	api := e.Group("/api")
+	routes.SetupRoutes(api)
 
 	httpPort := os.Getenv("PORT")
 	if httpPort == "" {
