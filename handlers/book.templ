@@ -1,9 +1,9 @@
 package handlers
 
 import (
+	"strconv"
 	"go-crud-template/lib"
 	"go-crud-template/models"
-	"fmt"
 )
 
 templ BooksList(books []models.Book) {
@@ -14,41 +14,51 @@ templ BooksList(books []models.Book) {
 				<li data-id={ v.Title }>
 					<form
 						method="POST"
-						action={ templ.URL("/app/todos/" + fmt.Sprint("%s", v.ID) + "/delete") }
+						action={ templ.URL("/books/" + strconv.FormatUint(uint64(v.ID), 10) + "/delete") }
 						hx-boost="true"
 					>
 						{ v.Title }
+						{ v.Author }
 						<button type="submit">X</button>
 					</form>
 				</li>
 			}
 		</ul>
-		<a href="todos/add" hx-boost="true">Add book</a>
+		<a href="books/add" hx-boost="true">Add book</a>
 	}
 }
 
-// templ TodoAdd(form *models.Book, err error) {
-// 	@lib.BaseLayout() {
-// 		@TodoAddForm(form, err)
-// 	}
-// }
+templ BookAdd(form *models.Book, err error) {
+	@lib.BaseLayout() {
+		@BookAddForm(form, err)
+	}
+}
 
-// templ TodoAddForm(form *models.Book, err error) {
-// 	<form method="POST" hx-boost="true">
-// 		<div>
-// 			<label>Name</label>
-// 			<input
-// 				type="text"
-// 				name="name"
-// 				id="name"
-// 				if form != nil {
-// 					value={ form.Name }
-// 				}
-// 			/>
-// 		</div>
-// 		if err != nil {
-// 			<p>{ err.Error() }</p>
-// 		}
-// 		<button type="submit">Submit</button>
-// 	</form>
-// }
+templ BookAddForm(form *models.Book, err error) {
+	<form method="POST" hx-boost="true">
+		<div>
+			<label>Title</label>
+			<input
+				type="text"
+				name="title"
+				id="title"
+				if form != nil {
+					value={ form.Title }
+				}
+			/>
+			<label>Author</label>
+			<input
+				type="text"
+				name="author"
+				id="author"
+				if form != nil {
+					value={ form.Author }
+				}
+			/>
+		</div>
+		if err != nil {
+			<p>{ err.Error() }</p>
+		}
+		<button type="submit">Submit</button>
+	</form>
+}

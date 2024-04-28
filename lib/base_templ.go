@@ -23,7 +23,7 @@ func BaseLayout() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" type=\"image/svg+xml\" href=\"/favicon.svg\"><meta name=\"viewport\" content=\"width=device-width\"><link rel=\"stylesheet\" href=\"/public/output.css\"><script src=\"/public/index.js\" defer></script><script src=\"https://unpkg.com/htmx.org@1.9.10\" integrity=\"sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC\" crossorigin=\"anonymous\"></script><title>ECHO</title></head><body class=\"sample-transition\"><main class=\"max-w-screen-md m-auto p-4\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<html lang=\"en\"><head><meta charset=\"utf-8\"><link rel=\"icon\" type=\"image/svg+xml\" href=\"/favicon.svg\"><meta name=\"viewport\" content=\"width=device-width\"><link rel=\"stylesheet\" href=\"/public/style.css\"><script src=\"/public/index.js\" defer></script><script src=\"https://unpkg.com/htmx.org@1.9.10\" integrity=\"sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC\" crossorigin=\"anonymous\"></script><title>ECHO</title></head><body class=\"sample-transition\"><main class=\"max-w-screen-md m-auto p-4\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

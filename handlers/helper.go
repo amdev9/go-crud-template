@@ -2,14 +2,10 @@ package handlers
 
 import (
 	"errors"
-	"strconv"
-
-	"go-crud-template/dto"
-
-	"github.com/labstack/echo/v4"
+	"go-crud-template/models"
 )
 
-func validateBook(book *dto.Book) error {
+func validateBook(book *models.Book) error {
 	if book.Title == "" {
 		return errors.New("title is required")
 	}
@@ -18,18 +14,5 @@ func validateBook(book *dto.Book) error {
 		return errors.New("author is required")
 	}
 
-	if book.Published <= 0 {
-		return errors.New("published year must be greater than 0")
-	}
-
 	return nil
-}
-
-func getIntId(c echo.Context) (uint, error) {
-	idStr := c.Param("id")
-	id, err := strconv.Atoi(idStr)
-	if err != nil {
-		return 0, err
-	}
-	return uint(id), nil
 }
