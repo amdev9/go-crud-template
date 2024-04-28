@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"go-crud-template/dto"
+	"go-crud-template/lib"
 	"go-crud-template/models"
 	"go-crud-template/repository"
 
@@ -62,9 +63,11 @@ func (h *BookHandler) GetAllBooks(c echo.Context) error {
 	books, err := h.Repo.GetAllBooks()
 	if err != nil {
 		log.Error("Failed to retrieve books. ", err.Error())
-		return c.JSON(http.StatusInternalServerError, "Failed to retrieve books.")
+		return err
+		// return c.JSON(http.StatusInternalServerError, "Failed to retrieve books.")
 	}
-	return c.JSON(http.StatusOK, books)
+	// return c.JSON(http.StatusOK, books)
+	return lib.Render(c, 200, BooksList(books))
 }
 
 func (h *BookHandler) UpdateBook(c echo.Context) error {

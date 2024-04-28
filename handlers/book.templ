@@ -1,0 +1,54 @@
+package handlers
+
+import (
+	"go-crud-template/lib"
+	"go-crud-template/models"
+	"fmt"
+)
+
+templ BooksList(books []models.Book) {
+	@lib.BaseLayout() {
+		<h1>Books</h1>
+		<ul>
+			for _, v := range books {
+				<li data-id={ v.Title }>
+					<form
+						method="POST"
+						action={ templ.URL("/app/todos/" + fmt.Sprint("%s", v.ID) + "/delete") }
+						hx-boost="true"
+					>
+						{ v.Title }
+						<button type="submit">X</button>
+					</form>
+				</li>
+			}
+		</ul>
+		<a href="todos/add" hx-boost="true">Add book</a>
+	}
+}
+
+// templ TodoAdd(form *models.Book, err error) {
+// 	@lib.BaseLayout() {
+// 		@TodoAddForm(form, err)
+// 	}
+// }
+
+// templ TodoAddForm(form *models.Book, err error) {
+// 	<form method="POST" hx-boost="true">
+// 		<div>
+// 			<label>Name</label>
+// 			<input
+// 				type="text"
+// 				name="name"
+// 				id="name"
+// 				if form != nil {
+// 					value={ form.Name }
+// 				}
+// 			/>
+// 		</div>
+// 		if err != nil {
+// 			<p>{ err.Error() }</p>
+// 		}
+// 		<button type="submit">Submit</button>
+// 	</form>
+// }

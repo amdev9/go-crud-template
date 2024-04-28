@@ -14,8 +14,8 @@ func SetupRoutes(g *echo.Group) {
 	bookHandler := handlers.NewBookHandler(repo)
 
 	g.GET("/books", bookHandler.GetAllBooks)
-	g.POST("/books", bookHandler.CreateBook)
-	g.GET("/books/:id", bookHandler.GetBook)
-	g.PUT("/books/:id", bookHandler.UpdateBook)
-	g.DELETE("/books/:id", bookHandler.DeleteBook)
+	// g.POST("/books", bookHandler.CreateBook)
+	// g.GET("/books/:id", bookHandler.GetBook)
+	// g.PUT("/books/:id", bookHandler.UpdateBook)
+	// g.DELETE("/books/:id", bookHandler.DeleteBook)
 }
