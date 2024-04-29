@@ -17,9 +17,12 @@ templ BooksList(books []models.Book) {
 						action={ templ.URL("/books/" + strconv.FormatUint(uint64(v.ID), 10) + "/delete") }
 						hx-boost="true"
 					>
-						{ v.Title }
-						{ v.Author }
-						<button type="submit">X</button>
+						<div class="grid">
+							<div>{ v.Title } { v.Author }</div>
+							<div>
+								<button type="submit">Delete</button>
+							</div>
+						</div>
 					</form>
 				</li>
 			}
@@ -35,12 +38,14 @@ templ BookAdd(form *models.Book, err error) {
 }
 
 templ BookAddForm(form *models.Book, err error) {
-	<form method="POST" hx-boost="true">
+	<form class="pico" method="POST" hx-boost="true">
 		<div>
 			<label>Title</label>
 			<input
 				type="text"
 				name="title"
+				placeholder="Title"
+				aria-label="Title"
 				id="title"
 				if form != nil {
 					value={ form.Title }
@@ -50,6 +55,8 @@ templ BookAddForm(form *models.Book, err error) {
 			<input
 				type="text"
 				name="author"
+				placeholder="Author"
+				aria-label="Author"
 				id="author"
 				if form != nil {
 					value={ form.Author }
